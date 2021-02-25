@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Main from "./main.js";
+import Sidebar from "./sidebar.js";
 import "./App.css";
 
 class App extends Component {
@@ -135,9 +136,10 @@ class App extends Component {
   };
   render() {
     return (
-      <>
+      <div className="App">
+        <Sidebar folders={this.state.folders} />
         <Main notes={this.state} />
-      </>
+      </div>
     );
   }
 }

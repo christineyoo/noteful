@@ -20,6 +20,7 @@ class Main extends Component {
       <>
         <h1>Noteful</h1>
         {this.displayNotes()}
+        <button>Add Note</button>
       </>
     );
   }
