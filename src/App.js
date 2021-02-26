@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import { Route, Switch } from "react-router-dom";
 import Main from "./main.js";
-import Sidebar from "./sidebar.js";
 import "./App.css";
 
 class App extends Component {
@@ -137,8 +137,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Sidebar folders={this.state.folders} />
-        <Main notes={this.state} />
+        <Route
+          path="/"
+          render={(props) => (
+            <Main
+              {...props}
+              notes={this.state.notes}
+              folders={this.state.folders}
+            />
+          )}
+        />
+        <Route path="/folder/:folder-id" />
       </div>
     );
   }

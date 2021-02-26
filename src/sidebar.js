@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import "./sidebar.css";
 
 class Sidebar extends Component {
@@ -7,7 +9,7 @@ class Sidebar extends Component {
     const formattedFolders = foldersArray.map((folder, i) => {
       return (
         <div className="folder-card" key={i}>
-          <p>{folder.name}</p>
+          <Link to="/">{folder.name}</Link>
         </div>
       );
     });
@@ -16,7 +18,7 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div className="sidebar">
+      <div>
         {this.displaySidebar()}
         <button>Add Folder</button>
       </div>
