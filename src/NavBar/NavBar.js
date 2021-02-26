@@ -8,7 +8,7 @@ class NavBar extends Component {
     const folderNavBar = folders.map((folder, i) => {
       return (
         <div className="folder-card" key={i}>
-          <NavLink to={`/folder/${folder.id}`}>{folder.name}</NavLink>
+          <NavLink to={`/folder/${folder.id}`} activeStyle={{fontStyle: "bold", color: "red"}}>{folder.name}</NavLink>
         </div>
       );
     });

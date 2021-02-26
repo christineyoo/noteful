@@ -20,21 +20,8 @@ class FolderOne extends Component {
     return formattedFilteredNotes;
   };
 
-  // This function should return the formatted name of the folder that the user clicked on.
-  displayFolderName = () => {
-    const { folders } = this.props.state;
-    const currentFolderName = folders.filter(
-      (folder) => folder.id === this.props.match.params.folderId
-    )[0].name;
-    return <h3>{currentFolderName} Folder</h3>;
-  };
   render() {
-    return (
-      <>
-        {this.displayFolderName()}
-        {this.displayFolderNotes()}
-      </>
-    );
+    return <>{this.displayFolderNotes()}</>;
   }
 }
 
