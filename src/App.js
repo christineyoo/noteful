@@ -31,18 +31,27 @@ class App extends Component {
         </header>
         <nav className="flex-1">
           <Route
-            exact path="/"
+            exact
+            path="/"
             render={(props) => <NavBar {...props} state={this.state} />}
-          />
-          <Route
-            exact path="/folder/b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
-            render={(props) => <FolderOne {...props} state={this.state} />}
           />
         </nav>
         <main className="flex-4">
           <Route
-            exact path="/"
+            exact
+            path="/"
             render={(props) => <MainPage {...props} state={this.state} />}
+          />
+          <Route
+            exact
+            path="/folder/b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
+            render={(props) => (
+              <FolderOne
+                {...props}
+                state={this.state}
+                folderId="b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
+              />
+            )}
           />
         </main>
       </div>
