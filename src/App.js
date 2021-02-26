@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Route, Switch, Link, NavLink } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import dummyStore from "./dummy-store.js";
 import MainPage from "./Main/MainPage";
 import NavBar from "./NavBar/NavBar";
+import FolderOne from "./Folders/FolderOne";
 import "./App.css";
 
 class App extends Component {
@@ -30,13 +31,17 @@ class App extends Component {
         </header>
         <nav className="flex-1">
           <Route
-            path="/"
+            exact path="/"
             render={(props) => <NavBar {...props} state={this.state} />}
+          />
+          <Route
+            exact path="/folder/b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
+            render={(props) => <FolderOne {...props} state={this.state} />}
           />
         </nav>
         <main className="flex-4">
           <Route
-            path="/"
+            exact path="/"
             render={(props) => <MainPage {...props} state={this.state} />}
           />
         </main>
