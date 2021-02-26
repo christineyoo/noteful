@@ -3,7 +3,7 @@ import { Route, Link } from "react-router-dom";
 import dummyStore from "./dummy-store.js";
 import MainPage from "./Main/MainPage";
 import NavBar from "./NavBar/NavBar";
-import FolderOne from "./Folders/FolderOne";
+import Folder from "./Folders/Folder";
 import "./App.css";
 
 class App extends Component {
@@ -45,7 +45,7 @@ class App extends Component {
             exact
             path="/folder/:folderId"
             render={(props) => (
-              <FolderOne
+              <Folder
                 {...props}
                 state={this.state}
                 folderOneId="b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"

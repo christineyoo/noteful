@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class FolderOne extends Component {
+class Folder extends Component {
   // This function should check which folder the user clicked on and display the notes for that accordingly.
   displayFolderNotes = () => {
     const { notes } = this.props.state;
@@ -25,4 +25,4 @@ class FolderOne extends Component {
   }
 }
 
-export default FolderOne;
+export default Folder;
