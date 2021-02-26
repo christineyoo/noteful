@@ -23,17 +23,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <header>
+          <h1>
+            <Link to="/">Noteful</Link>
+          </h1>
+        </header>
         <nav className="flex-1">
           <Route
             path="/"
             render={(props) => <NavBar {...props} state={this.state} />}
           />
         </nav>
-        <header>
-          <h1>
-            <Link to="/">Noteful</Link>
-          </h1>
-        </header>
         <main className="flex-4">
           <Route
             path="/"

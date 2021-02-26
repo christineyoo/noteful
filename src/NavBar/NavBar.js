@@ -1,22 +1,26 @@
 import React, { Component } from "react";
-import './NavBar.css';
+import { NavLink } from "react-router-dom";
+import "./NavBar.css";
 
 class NavBar extends Component {
-    displayNavBar = () => {
-        const { folders } = this.props.state;
-        const folderNavBar = folders.map((folder, i) => {
-          return (
-            <div className="folder-card" key={i}>
-              <p>{folder.name}</p>
-            </div>
-          );
-        });
-        return folderNavBar;
-      };
+  displayNavBar = () => {
+    const { folders } = this.props.state;
+    const folderNavBar = folders.map((folder, i) => {
+      return (
+        <div className="folder-card" key={i}>
+          <NavLink to={`/folder/${folder.id}`}>{folder.name}</NavLink>
+        </div>
+      );
+    });
+    return folderNavBar;
+  };
   render() {
-    return <>{this.displayNavBar()}
-   <button>Add Folder</button> 
-    </>;
+    return (
+      <>
+        {this.displayNavBar()}
+        <button>Add Folder</button>
+      </>
+    );
   }
 }
 
