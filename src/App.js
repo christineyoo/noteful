@@ -31,7 +31,6 @@ class App extends Component {
         </header>
         <nav className="flex-1">
           <Route
-            exact
             path="/"
             render={(props) => <NavBar {...props} state={this.state} />}
           />
