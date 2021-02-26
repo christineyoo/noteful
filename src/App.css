@@ -1,3 +1,15 @@
-/* .App {
+h1 {
+  text-align: center;
+}
+
+.App {
   display: flex;
-} */
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-4 {
+  flex: 4;
+}

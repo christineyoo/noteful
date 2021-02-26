@@ -23,7 +23,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <nav>
+        <nav className="flex-1">
           <Route
             path="/"
             render={(props) => <NavBar {...props} state={this.state} />}
@@ -34,7 +34,7 @@ class App extends Component {
             <Link to="/">Noteful</Link>
           </h1>
         </header>
-        <main>
+        <main className="flex-4">
           <Route
             path="/"
             render={(props) => <MainPage {...props} state={this.state} />}
