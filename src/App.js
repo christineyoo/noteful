@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import Main from "./main.js";
+import Folder from "./Folder.js";
+
 import "./App.css";
 
 class App extends Component {
@@ -137,7 +139,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Route path="/folder" render={(props) => (
+            <Folder
+              {...props}
+              notes={this.state.notes}
+              folders={this.state.folders}
+            />
+          )} />
         <Route
+          exact
           path="/"
           render={(props) => (
             <Main
@@ -147,7 +157,6 @@ class App extends Component {
             />
           )}
         />
-        <Route path="/folder/:folder-id" />
       </div>
     );
   }
