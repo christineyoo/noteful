@@ -9,7 +9,7 @@ class Sidebar extends Component {
     const formattedFolders = foldersArray.map((folder, i) => {
       return (
         <div className="folder-card" key={i}>
-          <Link to="/folder">{folder.name}</Link>
+          <Link to={`/folder/${folder.id}`}>{folder.name}</Link>
         </div>
       );
     });

@@ -9,7 +9,11 @@ class Folder extends Component {
     const filteredFolders = folders.filter((folder, i) => folder.id === folderOneId);
   console.log(filteredFolders);
   }
-  
+
+  displayFolderDestination = () => {
+      
+  }
+
   render() {
     return (
       <div>
