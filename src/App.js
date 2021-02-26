@@ -44,12 +44,14 @@ class App extends Component {
           />
           <Route
             exact
-            path="/folder/b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
+            path="/folder/:folderId"
             render={(props) => (
               <FolderOne
                 {...props}
                 state={this.state}
-                folderId="b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
+                folderOneId="b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
+                folderTwoId="b07161a6-ffaf-11e8-8eb2-f2801f1b9fd1"
+                folderThreeId="b07162f0-ffaf-11e8-8eb2-f2801f1b9fd1"
               />
             )}
           />
