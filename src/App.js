@@ -3,7 +3,9 @@ import { Route, Link } from "react-router-dom";
 import dummyStore from "./dummy-store.js";
 import MainPage from "./Main/MainPage";
 import NavBar from "./NavBar/NavBar";
+import NavBarForNote from "./NavBar/NavBarForNote";
 import Folder from "./Folders/Folder";
+import Note from "./Notes/Note";
 import "./App.css";
 
 class App extends Component {
@@ -34,6 +36,19 @@ class App extends Component {
             path="/"
             render={(props) => <NavBar {...props} state={this.state} />}
           />
+          <Route
+            exact
+            path="/note/:noteId"
+            render={({ props, history }) => (
+              <NavBarForNote
+                {...props}
+                state={this.state}
+                onClickBack={() => {
+                  history.goBack();
+                }}
+              />
+            )}
+          />
         </nav>
         <main className="flex-4">
           <Route
@@ -53,6 +68,11 @@ class App extends Component {
                 folderThreeId="b07162f0-ffaf-11e8-8eb2-f2801f1b9fd1"
               />
             )}
+          />
+          <Route
+            exact
+            path="/note/:noteId"
+            render={(props) => <Note {...props} state={this.state} />}
           />
         </main>
       </div>

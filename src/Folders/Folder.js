@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 class Folder extends Component {
   // This function should check which folder the user clicked on and display the notes for that accordingly.
@@ -10,7 +11,9 @@ class Folder extends Component {
     const formattedFilteredNotes = filteredNotes.map((note, i) => {
       return (
         <div key={i} className="note-card">
-          <h2>{note.name}</h2>
+          <NavLink to={`/note/${note.id}`}>
+            <h2>{note.name}</h2>
+          </NavLink>
           <p>Folder ID: {note.folderId}</p>
           <p>Date modified on {note.modified}</p>
           <button>Delete Note</button>
@@ -21,7 +24,12 @@ class Folder extends Component {
   };
 
   render() {
-    return <>{this.displayFolderNotes()}</>;
+    return (
+      <>
+        {this.displayFolderNotes()}
+        <button>Add Note</button>
+      </>
+    );
   }
 }
 

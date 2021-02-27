@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {NavLink} from 'react-router-dom';
 import "./MainPage.css";
 
 class MainPage extends Component {
@@ -7,7 +8,7 @@ class MainPage extends Component {
     const formattedNotes = notes.map((note, i) => {
       return (
         <div className="note-card" key={i}>
-          <h2>{note.name}</h2>
+          <NavLink to={`/note/${note.id}`}><h2>{note.name}</h2></NavLink>
           <p>Date modified on {note.modified}</p>
           <button>Delete</button>
         </div>
@@ -16,7 +17,8 @@ class MainPage extends Component {
     return formattedNotes;
   };
   render() {
-    return <>{this.displayNotes()}</>;
+    return <>{this.displayNotes()}
+    <button>Add Note</button></>;
   }
 }
 
