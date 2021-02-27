@@ -35,15 +35,7 @@ class App extends Component {
         <Route
           exact
           path="/note/:noteId"
-          render={({ props, history }) => (
-            <NavBarForNote
-              {...props}
-              state={this.state}
-              onClickBack={() => {
-                history.goBack();
-              }}
-            />
-          )}
+          render={(props) => <NavBarForNote {...props} data={this.state} />}
         />
       </>
     );
