@@ -87,8 +87,10 @@ class App extends Component {
             <Link to="/">Noteful</Link>
           </h1>
         </header>
-        <nav className="flex-1">{this.renderNavBars()}</nav>
-        <main className="flex-4">{this.renderMainSections()}</main>
+        <div className="main">
+          <nav className="flex-1">{this.renderNavBars()}</nav>
+          <main className="flex-4">{this.renderMainSections()}</main>
+        </div>
       </div>
     );
   }
