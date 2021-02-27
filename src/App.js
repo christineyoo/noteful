@@ -19,9 +19,65 @@ class App extends Component {
     setTimeout(() => this.setState(dummyStore), 600);
   }
 
-  // render navbar options
+  renderNavBars = () => {
+    return (
+      <>
+        <Route
+          exact
+          path="/"
+          render={(props) => <NavBar {...props} state={this.state} />}
+        />
+        <Route
+          exact
+          path="/folder/:folderId"
+          render={(props) => <NavBar {...props} state={this.state} />}
+        />
+        <Route
+          exact
+          path="/note/:noteId"
+          render={({ props, history }) => (
+            <NavBarForNote
+              {...props}
+              state={this.state}
+              onClickBack={() => {
+                history.goBack();
+              }}
+            />
+          )}
+        />
+      </>
+    );
+  };
 
-  // render all the notes
+  renderMainSections = () => {
+    return (
+      <>
+        <Route
+          exact
+          path="/"
+          render={(props) => <MainPage {...props} state={this.state} />}
+        />
+        <Route
+          exact
+          path="/folder/:folderId"
+          render={(props) => (
+            <Folder
+              {...props}
+              state={this.state}
+              folderOneId="b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
+              folderTwoId="b07161a6-ffaf-11e8-8eb2-f2801f1b9fd1"
+              folderThreeId="b07162f0-ffaf-11e8-8eb2-f2801f1b9fd1"
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/note/:noteId"
+          render={(props) => <Note {...props} state={this.state} />}
+        />
+      </>
+    );
+  };
 
   render() {
     return (
@@ -31,50 +87,8 @@ class App extends Component {
             <Link to="/">Noteful</Link>
           </h1>
         </header>
-        <nav className="flex-1">
-          <Route
-            path="/"
-            render={(props) => <NavBar {...props} state={this.state} />}
-          />
-          <Route
-            exact
-            path="/note/:noteId"
-            render={({ props, history }) => (
-              <NavBarForNote
-                {...props}
-                state={this.state}
-                onClickBack={() => {
-                  history.goBack();
-                }}
-              />
-            )}
-          />
-        </nav>
-        <main className="flex-4">
-          <Route
-            exact
-            path="/"
-            render={(props) => <MainPage {...props} state={this.state} />}
-          />
-          <Route
-            exact
-            path="/folder/:folderId"
-            render={(props) => (
-              <Folder
-                {...props}
-                state={this.state}
-                folderOneId="b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
-                folderTwoId="b07161a6-ffaf-11e8-8eb2-f2801f1b9fd1"
-                folderThreeId="b07162f0-ffaf-11e8-8eb2-f2801f1b9fd1"
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/note/:noteId"
-            render={(props) => <Note {...props} state={this.state} />}
-          />
-        </main>
+        <nav className="flex-1">{this.renderNavBars()}</nav>
+        <main className="flex-4">{this.renderMainSections()}</main>
       </div>
     );
   }
