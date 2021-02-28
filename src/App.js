@@ -23,22 +23,9 @@ class App extends Component {
   renderNavBars = () => {
     return (
       <>
-        <Route
-          exact
-          path="/"
-          // render={(props) => <NavBar {...props} state={this.state} />}
-          component={NavBar}
-        />
-        <Route
-          exact
-          path="/folder/:folderId"
-          render={(props) => <NavBar {...props} state={this.state} />}
-        />
-        <Route
-          exact
-          path="/note/:noteId"
-          render={(props) => <NavBarForNote {...props} data={this.state} />}
-        />
+        <Route exact path="/" component={NavBar} />
+        <Route exact path="/folder/:folderId" component={NavBar} />
+        <Route exact path="/note/:noteId" component={NavBarForNote} />
       </>
     );
   };
@@ -46,29 +33,9 @@ class App extends Component {
   renderMainSections = () => {
     return (
       <>
-        <Route
-          exact
-          path="/"
-          render={(props) => <MainPage {...props} state={this.state} />}
-        />
-        <Route
-          exact
-          path="/folder/:folderId"
-          render={(props) => (
-            <Folder
-              {...props}
-              state={this.state}
-              folderOneId="b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1"
-              folderTwoId="b07161a6-ffaf-11e8-8eb2-f2801f1b9fd1"
-              folderThreeId="b07162f0-ffaf-11e8-8eb2-f2801f1b9fd1"
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/note/:noteId"
-          render={(props) => <Note {...props} state={this.state} />}
-        />
+        <Route exact path="/" component={MainPage} />
+        <Route exact path="/folder/:folderId" component={Folder} />
+        <Route exact path="/note/:noteId" component={Note} />
       </>
     );
   };

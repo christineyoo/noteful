@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import {NavLink} from 'react-router-dom';
+import ApiContext from "../ApiContext";
 import "./MainPage.css";
 
 class MainPage extends Component {
+  static contextType = ApiContext;
+
   displayNotes = () => {
-    const { notes } = this.props.state;
-    const formattedNotes = notes.map((note, i) => {
+    const copyNotes = this.context.notes || [];
+    const formattedNotes = copyNotes.map((note, i) => {
       return (
         <div className="note-card" key={i}>
           <NavLink to={`/note/${note.id}`}><h2>{note.name}</h2></NavLink>

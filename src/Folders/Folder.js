@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import ApiContext from "../ApiContext";
 
 class Folder extends Component {
+  static contextType = ApiContext;
+
   // This function should check which folder the user clicked on and display the notes for that accordingly.
   displayFolderNotes = () => {
-    const { notes } = this.props.state;
-    const filteredNotes = notes.filter(
+    const copyNotes = this.context.notes || [];
+    const filteredNotes = copyNotes.filter(
       (note) => note.folderId === this.props.match.params.folderId
     );
     const formattedFilteredNotes = filteredNotes.map((note, i) => {

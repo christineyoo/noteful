@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import ApiContext from "../ApiContext";
 
 class Note extends Component {
+  static contextType = ApiContext;
+
   // This function should display the note that the user selected with the content showing.
   displayNote = () => {
-    const { notes } = this.props.state;
-    const filteredNote = notes.filter(
+    const copyNotes = this.context.notes || [];
+    const filteredNote = copyNotes.filter(
       (note) => note.id === this.props.match.params.noteId
     );
     const formattedFilteredNote = filteredNote.map((note, i) => {
