@@ -13,11 +13,41 @@ class App extends Component {
   state = {
     folders: [],
     notes: [],
+    error: null,
   };
 
-  // fake data loading from API call
   componentDidMount() {
-    setTimeout(() => this.setState(dummyStore), 600);
+    // Fetches folder data
+    fetch("http://localhost:9090/folders", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then((folderData) => this.setState({ folders: folderData }))
+      .catch((error) => this.setState({ error }));
+
+    // Fetches note data
+    fetch("http://localhost:9090/notes", {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then((noteData) => this.setState({ notes: noteData }))
+      .catch((error) => this.setState({ error }));
   }
 
   renderNavBars = () => {
