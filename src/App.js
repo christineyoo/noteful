@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import dummyStore from "./dummy-store.js";
+import ApiContext from "./ApiContext";
 import MainPage from "./Main/MainPage";
 import NavBar from "./NavBar/NavBar";
 import NavBarForNote from "./NavBar/NavBarForNote";
@@ -10,8 +11,8 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    notes: [],
     folders: [],
+    notes: [],
   };
 
   // fake data loading from API call
@@ -25,7 +26,8 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={(props) => <NavBar {...props} state={this.state} />}
+          // render={(props) => <NavBar {...props} state={this.state} />}
+          component={NavBar}
         />
         <Route
           exact
@@ -72,6 +74,10 @@ class App extends Component {
   };
 
   render() {
+    const contextValue = {
+      folders: this.state.folders,
+      notes: this.state.notes,
+    };
     return (
       <div className="App">
         <header>
@@ -79,10 +85,12 @@ class App extends Component {
             <Link to="/">Noteful</Link>
           </h1>
         </header>
-        <div className="main">
-          <nav className="flex-1">{this.renderNavBars()}</nav>
-          <main className="flex-4">{this.renderMainSections()}</main>
-        </div>
+        <ApiContext.Provider value={contextValue}>
+          <div className="main">
+            <nav className="flex-1">{this.renderNavBars()}</nav>
+            <main className="flex-4">{this.renderMainSections()}</main>
+          </div>
+        </ApiContext.Provider>
       </div>
     );
   }
