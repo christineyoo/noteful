@@ -1,6 +1,29 @@
 import React, { Component } from "react";
 import ApiContext from "../ApiContext";
 
+function deleteNoteRequest(noteId, callback) {
+  fetch(`http://localhost:9090/notes/${noteId}`, {
+    method: "DELETE",
+    headers: {
+      "content-type": "application/json",
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        return res.json().then((error) => {
+          throw error;
+        });
+      }
+      return res.json();
+    })
+    .then((data) => {
+      callback(noteId);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 class Note extends Component {
   static contextType = ApiContext;
 
@@ -12,12 +35,20 @@ class Note extends Component {
     );
     const formattedFilteredNote = filteredNote.map((note, i) => {
       return (
-        <div key={i} className="note-card">
-          <h2>{note.name}</h2>
-          <p>Date modified on {note.modified}</p>
-          <p>{note.content}</p>
-          <button>Delete Note</button>
-        </div>
+        <ApiContext.Consumer>
+          {(context) => (
+            <div key={i} className="note-card">
+              <h2>{note.name}</h2>
+              <p>Date modified on {note.modified}</p>
+              <p>{note.content}</p>
+              <button
+                onClick={() => deleteNoteRequest(note.id, context.deleteNote)}
+              >
+                Delete Note
+              </button>
+            </div>
+          )}
+        </ApiContext.Consumer>
       );
     });
     return formattedFilteredNote;

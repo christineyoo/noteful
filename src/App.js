@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
-import dummyStore from "./dummy-store.js";
 import ApiContext from "./ApiContext";
 import MainPage from "./Main/MainPage";
 import NavBar from "./NavBar/NavBar";
@@ -14,6 +13,12 @@ class App extends Component {
     folders: [],
     notes: [],
     error: null,
+  };
+
+  deleteNote = (noteId) => {
+    const newNotes = this.state.notes.filter((note) => note.id !== noteId);
+    this.setState({ notes: newNotes });
+    this.props.history.push("/");
   };
 
   componentDidMount() {
@@ -74,6 +79,7 @@ class App extends Component {
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
+      deleteNote: this.deleteNote,
     };
     return (
       <div className="App">
