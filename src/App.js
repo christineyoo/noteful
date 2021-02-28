@@ -18,7 +18,6 @@ class App extends Component {
   deleteNote = (noteId) => {
     const newNotes = this.state.notes.filter((note) => note.id !== noteId);
     this.setState({ notes: newNotes });
-    this.props.history.push("/");
   };
 
   componentDidMount() {
