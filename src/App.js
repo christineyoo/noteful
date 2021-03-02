@@ -15,11 +15,7 @@ class App extends Component {
     error: null,
   };
 
-  deleteNote = (noteId) => {
-    const newNotes = this.state.notes.filter((note) => note.id !== noteId);
-    this.setState({ notes: newNotes });
-  };
-
+  // Must "npm start" noteful-json-server to get posts
   componentDidMount() {
     // Fetches folder data
     fetch("http://localhost:9090/folders", {
@@ -54,6 +50,13 @@ class App extends Component {
       .catch((error) => this.setState({ error }));
   }
 
+  // Responsible for deleting a note from the state
+  deleteNote = (noteId) => {
+    const newNotes = this.state.notes.filter((note) => note.id !== noteId);
+    this.setState({ notes: newNotes });
+  };
+
+  // Renders all the Routes for the NavBars
   renderNavBars = () => {
     return (
       <>
@@ -64,6 +67,7 @@ class App extends Component {
     );
   };
 
+  // Renders all the Routes for the main post sections
   renderMainSections = () => {
     return (
       <>

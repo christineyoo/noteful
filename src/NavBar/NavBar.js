@@ -6,9 +6,10 @@ import "./NavBar.css";
 class NavBar extends Component {
   static contextType = ApiContext;
 
+  // Returns the nav bar for the "/" and "/folder" routes
   displayNavBar = () => {
-    const copy = this.context.folders || [];
-    const folderNavBar = copy.map((folder, i) => {
+    const copyFolders = this.context.folders || [];
+    const folderNavBar = copyFolders.map((folder, i) => {
       return (
         <div className="folder-card" key={i}>
           <NavLink

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import ApiContext from "../ApiContext";
 
+// Sends DELETE request for a selected note when on the "/folder" route
 function deleteNoteRequest(noteId, callback) {
   fetch(`http://localhost:9090/notes/${noteId}`, {
     method: "DELETE",
@@ -28,7 +29,7 @@ function deleteNoteRequest(noteId, callback) {
 class Folder extends Component {
   static contextType = ApiContext;
 
-  // This function should check which folder the user clicked on and display the notes for that accordingly.
+  // This function checks which folder the user clicked on and displays the notes accordingly.
   displayFolderNotes = () => {
     const copyNotes = this.context.notes || [];
     const filteredNotes = copyNotes.filter(

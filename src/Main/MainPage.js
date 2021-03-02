@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import ApiContext from "../ApiContext";
 import "./MainPage.css";
 
+// Makes DELETE request to backend service
 function deleteNoteRequest(noteId, callback) {
   fetch(`http://localhost:9090/notes/${noteId}`, {
     method: "DELETE",
@@ -29,6 +30,7 @@ function deleteNoteRequest(noteId, callback) {
 class MainPage extends Component {
   static contextType = ApiContext;
 
+  // Responsible for displaying all the notes on the "/" route
   displayNotes = () => {
     const copyNotes = this.context.notes || [];
     const formattedNotes = copyNotes.map((note, i) => {

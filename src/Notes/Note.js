@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ApiContext from "../ApiContext";
 
+// Sends a DELETE request for a note when on the "/note" route
+//  ?? Not sure where to put `this.props.history.push('/')` once the user deletes a note on the "/note" route ??
 function deleteNoteRequest(noteId, callback) {
   fetch(`http://localhost:9090/notes/${noteId}`, {
     method: "DELETE",
@@ -27,7 +29,7 @@ function deleteNoteRequest(noteId, callback) {
 class Note extends Component {
   static contextType = ApiContext;
 
-  // This function should display the note that the user selected with the content showing.
+  // This function displays the note that the user selected.
   displayNote = () => {
     const copyNotes = this.context.notes || [];
     const filteredNote = copyNotes.filter(
