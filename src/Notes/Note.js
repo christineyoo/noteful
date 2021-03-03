@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import ApiContext from "../ApiContext";
 
-// Sends a DELETE request for a note when on the "/note" route
-//  ?? Not sure where to put `this.props.history.push('/')` once the user deletes a note on the "/note" route ??
-function deleteNoteRequest(noteId, callback) {
+class Note extends Component {
+  static contextType = ApiContext;
+
+  // Sends a DELETE request for a note when on the "/note" route
+deleteNoteRequest(noteId, callback) {
   fetch(`http://localhost:9090/notes/${noteId}`, {
     method: "DELETE",
     headers: {
@@ -19,15 +21,13 @@ function deleteNoteRequest(noteId, callback) {
       return res.json();
     })
     .then((data) => {
+      this.props.history.push('/');
       callback(noteId);
     })
     .catch((error) => {
       console.error(error);
     });
 }
-
-class Note extends Component {
-  static contextType = ApiContext;
 
   // This function displays the note that the user selected.
   displayNote = () => {
@@ -44,7 +44,7 @@ class Note extends Component {
               <p>Date modified on {note.modified}</p>
               <p>{note.content}</p>
               <button
-                onClick={() => deleteNoteRequest(note.id, context.deleteNote)}
+                onClick={() => this.deleteNoteRequest(note.id, context.deleteNote)}
               >
                 Delete Note
               </button>
