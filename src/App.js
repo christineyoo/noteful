@@ -62,7 +62,14 @@ class App extends Component {
   };
 
   // Responsible for adding a note to the state
-  addNote = () => {};
+  addNote = (data, noteName, noteContent) => {
+    const newNoteObject = {
+      id: data.id,
+      name: noteName,
+      content: noteContent,
+    };
+    this.setState({ notes: [...this.state.notes, newNoteObject] });
+  };
 
   // Responsible for deleting a note from the state
   deleteNote = (noteId) => {

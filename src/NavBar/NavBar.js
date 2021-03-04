@@ -21,7 +21,6 @@ class NavBar extends Component {
         </div>
       );
     });
-    console.log(copyFolders);
     return folderNavBar;
   };
 

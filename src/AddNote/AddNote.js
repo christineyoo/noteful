@@ -31,7 +31,14 @@ class AddNote extends Component {
     });
   };
 
-  inputFolderName = () => {};
+  inputFolderName = (folderName) => {
+    this.setState({
+      folder: {
+        value: folderName,
+        touched: true,
+      },
+    });
+  };
 
   inputContent = (content) => {
     this.setState({
@@ -41,7 +48,7 @@ class AddNote extends Component {
       },
     });
   };
-  //   Validation functions for name, foldername, and content fields
+  //   Validation functions for name and content fields
   validateName = () => {
     const name = this.state.name.value.trim();
     if (name.length === 0) {
@@ -67,9 +74,34 @@ class AddNote extends Component {
         </option>
       );
     });
-    console.log("copyfolders", copyFolders);
-    console.log("folderOptions", folderOptions);
     return folderOptions;
+  };
+
+  handleSubmit = (event, callback) => {
+    event.preventDefault();
+    const { name, content } = this.state;
+    const noteName = name.value;
+    const noteContent = content.value;
+
+    fetch("http://localhost:9090/notes", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+        this.props.history.push("/");
+
+        callback(data, noteName, noteContent);
+      })
+      .catch((error) => this.setState({ error }));
   };
 
   render() {
@@ -119,10 +151,17 @@ class AddNote extends Component {
             {this.state.content.touched && (
               <ValidationError message={this.validateContent()} />
             )}
-            <button type="reset" onClick={() => this.props.history.goBack()}>
+            <button type="reset" onClick={() => this.props.history.push("/")}>
               Cancel
             </button>
-            <button type="submit" disabled={this.validateName()}>
+            <button
+              type="submit"
+              disabled={
+                this.validateName() ||
+                this.validateFolderName() ||
+                this.validateContent()
+              }
+            >
               Save
             </button>
           </form>
