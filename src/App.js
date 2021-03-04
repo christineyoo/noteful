@@ -6,6 +6,7 @@ import NavBar from "./NavBar/NavBar";
 import NavBarForNote from "./NavBar/NavBarForNote";
 import Folder from "./Folders/Folder";
 import Note from "./Notes/Note";
+import AddFolder from "./AddFolder/AddFolder";
 import "./App.css";
 
 class App extends Component {
@@ -49,7 +50,10 @@ class App extends Component {
       .then((noteData) => this.setState({ notes: noteData }))
       .catch((error) => this.setState({ error }));
   }
-
+  // Responsible for adding a folder to the state
+  addFolder = (folderName) => {
+    console.log("this is the folderName", folderName)
+  }
   // Responsible for deleting a note from the state
   deleteNote = (noteId) => {
     const newNotes = this.state.notes.filter((note) => note.id !== noteId);
@@ -73,6 +77,7 @@ class App extends Component {
       <>
         <Route exact path="/" component={MainPage} />
         <Route exact path="/folder/:folderId" component={Folder} />
+        <Route path="/addFolder" component={AddFolder} />
         <Route exact path="/note/:noteId" component={Note} />
       </>
     );
@@ -83,6 +88,7 @@ class App extends Component {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.deleteNote,
+      addFolder: this.addFolder
     };
     return (
       <div className="App">

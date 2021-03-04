@@ -23,11 +23,20 @@ class NavBar extends Component {
     });
     return folderNavBar;
   };
+
+  displayAddFolderForm = () => {
+    console.log("You clicked displayAddfolderForm");
+  };
+
   render() {
     return (
       <>
         {this.displayNavBar()}
-        <button>Add Folder</button>
+        <NavLink to="/addFolder">
+          <button onClick={() => this.displayAddFolderForm()}>
+            Add Folder
+          </button>
+        </NavLink>
       </>
     );
   }
