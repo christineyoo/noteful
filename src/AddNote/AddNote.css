@@ -1,0 +1,13 @@
+textarea {
+    margin: 10px;
+    padding: 20px;
+}
+
+select {
+    margin: 10px;
+    padding: 10px;
+}
+
+label {
+    font-weight: 900;
+}

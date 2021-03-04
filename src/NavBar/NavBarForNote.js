@@ -11,14 +11,13 @@ class NavBarForNote extends Component {
     const currentNote = copyNotes.filter(
       (note) => note.id === this.props.match.params.noteId
     )[0];
-    // ?? For some reason, currentNote is returning as undefined only when the user clicks the "Delete" button ??
     const filteredFolder = copyFolders.filter(
       (folder) => folder.id === currentNote.folderId
     );
     return (
       <div>
         <button onClick={() => this.props.history.goBack()}>Go Back</button>
-        {!!filteredFolder.length && <p>{filteredFolder[0].name}</p>}
+        {!!filteredFolder.length && <h2>{filteredFolder[0].name}</h2>}
       </div>
     );
   };

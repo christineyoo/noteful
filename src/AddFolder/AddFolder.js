@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ApiContext from "../ApiContext";
 import ValidationError from "../ValidationError/ValidationError";
+import "./AddFolder.css";
 
 // This component creates a form that adds a new folder.
 // There should be a POST request to the /folders endpoint on the server
@@ -48,7 +49,7 @@ class AddFolder extends Component {
   validateName = () => {
     const name = this.state.name.value.trim();
     if (name.length === 0) {
-      return "Folder name is required"; 
+      return "A name for the folder is required";
     }
   };
 
@@ -76,7 +77,9 @@ class AddFolder extends Component {
             <button type="reset" onClick={() => this.props.history.goBack()}>
               Cancel
             </button>
-            <button type="submit" disabled={this.validateName()}>Save</button>
+            <button type="submit" disabled={this.validateName()}>
+              Save
+            </button>
           </form>
         )}
       </ApiContext.Consumer>

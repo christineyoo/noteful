@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ApiContext from "../ApiContext";
 import ValidationError from "../ValidationError/ValidationError";
+import './AddNote.css';
 
 // This component creates a form that adds a new note.
 // There should be a POST request to the /notes endpoint on the server
@@ -52,7 +53,7 @@ class AddNote extends Component {
   validateName = () => {
     const name = this.state.name.value.trim();
     if (name.length === 0) {
-      return "Folder name is required";
+      return "A name for the note is required";
     }
   };
 
@@ -139,7 +140,7 @@ class AddNote extends Component {
               <ValidationError message={this.validateFolderName()} />
             )}
             <br />
-            <label htmlFor="content">Content </label>
+            <label htmlFor="content">Content </label><br />
             <textarea
               name="content"
               id="content"
