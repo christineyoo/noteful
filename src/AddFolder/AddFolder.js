@@ -23,6 +23,8 @@ class AddFolder extends Component {
   handleSubmit = (event, callback) => {
     event.preventDefault();
     const { name } = this.state;
+    const folderName = name.value;
+
 
     fetch("http://localhost:9090/folders", {
       method: "POST",
@@ -36,7 +38,8 @@ class AddFolder extends Component {
         }
         return res.json();
       })
-      .then((data) => callback(name.value))
+      .then((data) => 
+      callback(data, folderName))
       .catch((error) => this.setState({ error }));
   };
 

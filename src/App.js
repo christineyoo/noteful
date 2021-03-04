@@ -51,9 +51,16 @@ class App extends Component {
       .catch((error) => this.setState({ error }));
   }
   // Responsible for adding a folder to the state
-  addFolder = (folderName) => {
-    console.log("this is the folderName", folderName)
-  }
+  addFolder = (data, folderName) => {
+    console.log("this is the data", data);
+    console.log("this is the folderName", folderName);
+    const newFolderObject = {
+      id: data.id,
+      name: folderName,
+    };
+    console.log("new folder obj", newFolderObject);
+    this.setState({ folders: [...this.state.folders, newFolderObject] });
+  };
   // Responsible for deleting a note from the state
   deleteNote = (noteId) => {
     const newNotes = this.state.notes.filter((note) => note.id !== noteId);
@@ -88,7 +95,7 @@ class App extends Component {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.deleteNote,
-      addFolder: this.addFolder
+      addFolder: this.addFolder,
     };
     return (
       <div className="App">
