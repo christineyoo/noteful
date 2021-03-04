@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ApiContext from "../ApiContext";
+import ValidationError from "../ValidationError/ValidationError";
 
 // This component creates a form that adds a new folder.
 // There should be a POST request to the /folders endpoint on the server
@@ -25,7 +26,6 @@ class AddFolder extends Component {
     const { name } = this.state;
     const folderName = name.value;
 
-
     fetch("http://localhost:9090/folders", {
       method: "POST",
       headers: {
@@ -38,16 +38,28 @@ class AddFolder extends Component {
         }
         return res.json();
       })
-      .then((data) => 
-      callback(data, folderName))
+      .then((data) => {
+        this.props.history.push("/");
+        callback(data, folderName);
+      })
       .catch((error) => this.setState({ error }));
+  };
+
+  validateName = () => {
+    const name = this.state.name.value.trim();
+    if (name.length === 0) {
+      return "Folder name is required"; 
+    }
   };
 
   render() {
     return (
       <ApiContext.Consumer>
         {(context) => (
-          <form className="folder" onSubmit={(e) => this.handleSubmit(e, context.addFolder)}>
+          <form
+            className="folder"
+            onSubmit={(e) => this.handleSubmit(e, context.addFolder)}
+          >
             <h2>Create a Folder</h2>
             <label htmlFor="name">Folder Name </label>
             <input
@@ -57,8 +69,13 @@ class AddFolder extends Component {
               onChange={(e) => this.inputName(e.target.value)}
             />
             <br />
-            <button type="reset">Cancel</button>
-            <button type="submit">Save</button>
+            {this.state.name.touched && (
+              <ValidationError message={this.validateName()} />
+            )}
+            <button type="reset" onClick={() => this.props.history.goBack()}>
+              Cancel
+            </button>
+            <button type="submit" disabled={this.validateName()}>Save</button>
           </form>
         )}
       </ApiContext.Consumer>
