@@ -62,7 +62,9 @@ class Folder extends Component {
     return (
       <>
         {this.displayFolderNotes()}
-        <button>Add Note</button>
+        <NavLink to="/addNote">
+          <button>Add Note</button>
+        </NavLink>
       </>
     );
   }

@@ -59,7 +59,9 @@ class MainPage extends Component {
     return (
       <>
         {this.displayNotes()}
-        <button>Add Note</button>
+        <NavLink to="/addNote">
+          <button>Add Note</button>
+        </NavLink>
       </>
     );
   }
