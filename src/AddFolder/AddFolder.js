@@ -72,6 +72,7 @@ class AddFolder extends Component {
             {this.state.name.touched && (
               <ValidationError message={this.validateName()} />
             )}
+            <br />
             <button type="reset" onClick={() => this.props.history.goBack()}>
               Cancel
             </button>

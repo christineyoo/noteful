@@ -8,6 +8,7 @@ import Folder from "./Folders/Folder";
 import Note from "./Notes/Note";
 import AddFolder from "./AddFolder/AddFolder";
 import AddNote from "./AddNote/AddNote";
+import NotefulError from "./NotefulError";
 import "./App.css";
 
 class App extends Component {
@@ -119,8 +120,12 @@ class App extends Component {
         </header>
         <ApiContext.Provider value={contextValue}>
           <div className="main">
-            <nav className="flex-1">{this.renderNavBars()}</nav>
-            <main className="flex-4">{this.renderMainSections()}</main>
+            <NotefulError>
+              <nav className="flex-1">{this.renderNavBars()}</nav>
+            </NotefulError>
+            <NotefulError>
+              <main className="flex-4">{this.renderMainSections()}</main>
+            </NotefulError>
           </div>
         </ApiContext.Provider>
       </div>

@@ -69,7 +69,7 @@ class AddNote extends Component {
     const copyFolders = this.context.folders || [];
     const folderOptions = copyFolders.map((folder, i) => {
       return (
-        <option key={i} value={folder.name}>
+        <option key={i} value={folder.id}>
           {folder.name}
         </option>
       );
@@ -151,6 +151,7 @@ class AddNote extends Component {
             {this.state.content.touched && (
               <ValidationError message={this.validateContent()} />
             )}
+            <br />
             <button type="reset" onClick={() => this.props.history.push("/")}>
               Cancel
             </button>
