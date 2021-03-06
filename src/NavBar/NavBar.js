@@ -24,16 +24,16 @@ class NavBar extends Component {
     return folderNavBar;
   };
 
-  displayAddFolderForm = () => {
-    console.log("You clicked displayAddfolderForm");
-  };
+  // displayAddFolderForm = () => {
+  //   console.log("You clicked displayAddfolderForm");
+  // };
 
   render() {
     return (
       <>
         {this.displayNavBar()}
         <NavLink to="/addFolder">
-          <button onClick={() => this.displayAddFolderForm()}>
+          <button>
             Add Folder
           </button>
         </NavLink>

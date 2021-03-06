@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import ApiContext from "../ApiContext";
+import PropTypes from "prop-types";
 import ValidationError from "../ValidationError/ValidationError";
-import './AddNote.css';
+import "./AddNote.css";
 
 // This component creates a form that adds a new note.
 // There should be a POST request to the /notes endpoint on the server
 class AddNote extends Component {
+  static propTypes = {
+    history: PropTypes.object,
+  };
+
   static contextType = ApiContext;
   state = {
     name: {
@@ -80,15 +85,20 @@ class AddNote extends Component {
 
   handleSubmit = (event, callback) => {
     event.preventDefault();
-    const { name, content } = this.state;
+    const { name, content, folder } = this.state;
     const noteName = name.value;
     const noteContent = content.value;
-
+    const folderId = folder.value;
     fetch("http://localhost:9090/notes", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
+      body: JSON.stringify({
+        name: noteName,
+        content: noteContent,
+        folderId: folderId,
+      }),
     })
       .then((res) => {
         if (!res.ok) {
@@ -97,9 +107,7 @@ class AddNote extends Component {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         this.props.history.push("/");
-
         callback(data, noteName, noteContent);
       })
       .catch((error) => this.setState({ error }));
@@ -140,7 +148,8 @@ class AddNote extends Component {
               <ValidationError message={this.validateFolderName()} />
             )}
             <br />
-            <label htmlFor="content">Content </label><br />
+            <label htmlFor="content">Content </label>
+            <br />
             <textarea
               name="content"
               id="content"

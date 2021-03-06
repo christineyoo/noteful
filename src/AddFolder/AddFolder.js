@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import ApiContext from "../ApiContext";
+import PropTypes from "prop-types";
 import ValidationError from "../ValidationError/ValidationError";
 import "./AddFolder.css";
 
 // This component creates a form that adds a new folder.
 // There should be a POST request to the /folders endpoint on the server
 class AddFolder extends Component {
+  static propTypes = {
+    history: PropTypes.object
+  };
+
   state = {
     name: {
       value: "",
@@ -32,6 +37,9 @@ class AddFolder extends Component {
       headers: {
         "content-type": "application/json",
       },
+      body: JSON.stringify({
+        name: folderName
+      })
     })
       .then((res) => {
         if (!res.ok) {

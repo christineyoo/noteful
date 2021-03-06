@@ -1,33 +1,37 @@
 import React, { Component } from "react";
 import ApiContext from "../ApiContext";
+import PropTypes from "prop-types";
 
 class Note extends Component {
+  static propTypes = {
+    history: PropTypes.object
+  };
   static contextType = ApiContext;
 
   // Sends a DELETE request for a note when on the "/note" route
-deleteNoteRequest(noteId, callback) {
-  fetch(`http://localhost:9090/notes/${noteId}`, {
-    method: "DELETE",
-    headers: {
-      "content-type": "application/json",
-    },
-  })
-    .then((res) => {
-      if (!res.ok) {
-        return res.json().then((error) => {
-          throw error;
-        });
-      }
-      return res.json();
+  deleteNoteRequest(noteId, callback) {
+    fetch(`http://localhost:9090/notes/${noteId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
     })
-    .then((data) => {
-      this.props.history.push('/');
-      callback(noteId);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
+      .then((res) => {
+        if (!res.ok) {
+          return res.json().then((error) => {
+            throw error;
+          });
+        }
+        return res.json();
+      })
+      .then((data) => {
+        this.props.history.push("/");
+        callback(noteId);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   // This function displays the note that the user selected.
   displayNote = () => {
@@ -37,14 +41,16 @@ deleteNoteRequest(noteId, callback) {
     );
     const formattedFilteredNote = filteredNote.map((note, i) => {
       return (
-        <ApiContext.Consumer>
+        <ApiContext.Consumer key={i}>
           {(context) => (
-            <div key={i} className="note-card">
+            <div className="note-card">
               <h2>{note.name}</h2>
               <p>Date modified on {note.modified}</p>
               <p>{note.content}</p>
               <button
-                onClick={() => this.deleteNoteRequest(note.id, context.deleteNote)}
+                onClick={() =>
+                  this.deleteNoteRequest(note.id, context.deleteNote)
+                }
               >
                 Delete Note
               </button>

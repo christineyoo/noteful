@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 import ApiContext from "../ApiContext";
 
 // Sends DELETE request for a selected note when on the "/folder" route
@@ -27,6 +28,10 @@ function deleteNoteRequest(noteId, callback) {
 }
 
 class Folder extends Component {
+  static propTypes = {
+    match: PropTypes.object,
+  };
+
   static contextType = ApiContext;
 
   // This function checks which folder the user clicked on and displays the notes accordingly.
@@ -37,9 +42,9 @@ class Folder extends Component {
     );
     const formattedFilteredNotes = filteredNotes.map((note, i) => {
       return (
-        <ApiContext.Consumer>
+        <ApiContext.Consumer key={i}>
           {(context) => (
-            <div key={i} className="note-card">
+            <div className="note-card">
               <NavLink to={`/note/${note.id}`}>
                 <h2>{note.name}</h2>
               </NavLink>

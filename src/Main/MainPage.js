@@ -35,9 +35,9 @@ class MainPage extends Component {
     const copyNotes = this.context.notes || [];
     const formattedNotes = copyNotes.map((note, i) => {
       return (
-        <ApiContext.Consumer>
+        <ApiContext.Consumer key={i}>
           {(context) => (
-            <div className="note-card" key={i}>
+            <div className="note-card">
               <NavLink to={`/note/${note.id}`}>
                 <h2>{note.name}</h2>
               </NavLink>
