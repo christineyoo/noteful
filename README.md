@@ -8,7 +8,14 @@ To get your local copy of the Noteful API, clone this project into your local pr
 - `npm install`
 - `npm start`
 
-### Technologies
+### Preview
+![image](https://user-images.githubusercontent.com/76637034/111012523-1d2cd880-8351-11eb-8f34-ddd44a9d9ba0.png)
+
+![image](https://user-images.githubusercontent.com/76637034/111012535-2e75e500-8351-11eb-986f-60c405f42658.png)
+
+![image](https://user-images.githubusercontent.com/76637034/111012548-4188b500-8351-11eb-8572-1988f2395b28.png)
+
+#### Technologies
 - ReactJS (Context, React Router)
 - JavaScript
 - HTML5
