@@ -2,7 +2,7 @@
 
 This app enables users to create and delete notes and folders.
 ## Noteful JSON server:
-To get your local copy of the Noteful API, clone this project into your local projects folder.
+To get your local copy of the Noteful API, clone the following into your local projects folder.
 - `git clone https://github.com/tomatau/noteful-json-server`
 - `cd ./noteful-json-server`
 - `npm install`
