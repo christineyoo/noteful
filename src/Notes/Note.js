@@ -10,7 +10,7 @@ class Note extends Component {
 
   // Sends a DELETE request for a note when on the "/note" route
   deleteNoteRequest(noteId, callback) {
-    fetch(`http://localhost:9090/notes/${noteId}`, {
+    fetch(`http://localhost:8000/api/notes/${noteId}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

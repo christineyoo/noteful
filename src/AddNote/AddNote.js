@@ -1,30 +1,30 @@
-import React, { Component } from "react";
-import ApiContext from "../ApiContext";
-import PropTypes from "prop-types";
-import ValidationError from "../ValidationError/ValidationError";
-import "./AddNote.css";
+import React, { Component } from 'react';
+import ApiContext from '../ApiContext';
+import PropTypes from 'prop-types';
+import ValidationError from '../ValidationError/ValidationError';
+import './AddNote.css';
 
 // This component creates a form that adds a new note.
 // There should be a POST request to the /notes endpoint on the server
 class AddNote extends Component {
   static propTypes = {
-    history: PropTypes.object,
+    history: PropTypes.object
   };
 
   static contextType = ApiContext;
   state = {
     name: {
-      value: "",
-      touched: false,
+      value: '',
+      touched: false
     },
     content: {
-      value: "",
-      touched: false,
+      value: '',
+      touched: false
     },
     folder: {
-      value: "",
-      touched: false,
-    },
+      value: '',
+      touched: false
+    }
   };
 
   //   Functions to change the state
@@ -32,8 +32,8 @@ class AddNote extends Component {
     this.setState({
       name: {
         value: noteName,
-        touched: true,
-      },
+        touched: true
+      }
     });
   };
 
@@ -41,8 +41,8 @@ class AddNote extends Component {
     this.setState({
       folder: {
         value: folderName,
-        touched: true,
-      },
+        touched: true
+      }
     });
   };
 
@@ -50,15 +50,15 @@ class AddNote extends Component {
     this.setState({
       content: {
         value: content,
-        touched: true,
-      },
+        touched: true
+      }
     });
   };
   //   Validation functions for name and content fields
   validateName = () => {
     const name = this.state.name.value.trim();
     if (name.length === 0) {
-      return "A name for the note is required";
+      return 'A name for the note is required';
     }
   };
 
@@ -67,7 +67,7 @@ class AddNote extends Component {
   validateContent = () => {
     const content = this.state.content.value.trim();
     if (content.length === 0) {
-      return "Content for the note is required";
+      return 'Content for the note is required';
     }
   };
 
@@ -76,7 +76,7 @@ class AddNote extends Component {
     const folderOptions = copyFolders.map((folder, i) => {
       return (
         <option key={i} value={folder.id}>
-          {folder.name}
+          {folder.folder_name}
         </option>
       );
     });
@@ -89,16 +89,17 @@ class AddNote extends Component {
     const noteName = name.value;
     const noteContent = content.value;
     const folderId = folder.value;
-    fetch("http://localhost:9090/notes", {
-      method: "POST",
+    fetch('http://localhost:8000/api/notes', {
+      method: 'POST',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json'
       },
       body: JSON.stringify({
-        name: noteName,
+        note_name: noteName,
         content: noteContent,
-        folderId: folderId,
-      }),
+        folder_id: folderId,
+        // modified: ???
+      })
     })
       .then((res) => {
         if (!res.ok) {
@@ -107,7 +108,7 @@ class AddNote extends Component {
         return res.json();
       })
       .then((data) => {
-        this.props.history.push("/");
+        this.props.history.push('/');
         callback(data, noteName, noteContent);
       })
       .catch((error) => this.setState({ error }));
@@ -118,15 +119,15 @@ class AddNote extends Component {
       <ApiContext.Consumer>
         {(context) => (
           <form
-            className="note"
+            className='note'
             onSubmit={(e) => this.handleSubmit(e, context.addNote)}
           >
             <h2>Create a Note</h2>
-            <label htmlFor="name">Note Name </label>
+            <label htmlFor='name'>Note Name </label>
             <input
-              type="text"
-              name="name"
-              id="name"
+              type='text'
+              name='name'
+              id='name'
               onChange={(e) => this.inputName(e.target.value)}
             />
             <br />
@@ -134,10 +135,10 @@ class AddNote extends Component {
               <ValidationError message={this.validateName()} />
             )}
             <br />
-            <label htmlFor="folder">Folder Name </label>
+            <label htmlFor='folder'>Folder Name </label>
             <select
-              name="folder"
-              id="folder"
+              name='folder'
+              id='folder'
               onChange={(e) => this.inputFolderName(e.target.value)}
             >
               {this.displayFolderOptions()}
@@ -148,25 +149,25 @@ class AddNote extends Component {
               <ValidationError message={this.validateFolderName()} />
             )}
             <br />
-            <label htmlFor="content">Content </label>
+            <label htmlFor='content'>Content </label>
             <br />
             <textarea
-              name="content"
-              id="content"
+              name='content'
+              id='content'
               onChange={(e) => this.inputContent(e.target.value)}
-              cols="40"
-              rows="5"
+              cols='40'
+              rows='5'
             />
             <br />
             {this.state.content.touched && (
               <ValidationError message={this.validateContent()} />
             )}
             <br />
-            <button type="reset" onClick={() => this.props.history.push("/")}>
+            <button type='reset' onClick={() => this.props.history.push('/')}>
               Cancel
             </button>
             <button
-              type="submit"
+              type='submit'
               disabled={
                 this.validateName() ||
                 this.validateFolderName() ||

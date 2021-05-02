@@ -16,17 +16,13 @@ class NavBar extends Component {
             to={`/folder/${folder.id}`}
             activeStyle={{ fontStyle: "bold", color: "#669bbc", fontWeight: "900" }}
           >
-            {folder.name}
+            {folder.folder_name}
           </NavLink>
         </div>
       );
     });
     return folderNavBar;
   };
-
-  // displayAddFolderForm = () => {
-  //   console.log("You clicked displayAddfolderForm");
-  // };
 
   render() {
     return (

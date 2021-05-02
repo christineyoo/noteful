@@ -5,7 +5,7 @@ import "./MainPage.css";
 
 // Makes DELETE request to backend service
 function deleteNoteRequest(noteId, callback) {
-  fetch(`http://localhost:9090/notes/${noteId}`, {
+  fetch(`http://localhost:8000/api/notes/${noteId}`, {
     method: "DELETE",
     headers: {
       "content-type": "application/json",
@@ -39,7 +39,7 @@ class MainPage extends Component {
           {(context) => (
             <div className="note-card">
               <NavLink to={`/note/${note.id}`}>
-                <h2>{note.name}</h2>
+                <h2>{note.note_name}</h2>
               </NavLink>
               <p>Date modified on {note.modified}</p>
               <button

@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import PropTypes from "prop-types";
-import ApiContext from "../ApiContext";
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import ApiContext from '../ApiContext';
 
 // Sends DELETE request for a selected note when on the "/folder" route
 function deleteNoteRequest(noteId, callback) {
-  fetch(`http://localhost:9090/notes/${noteId}`, {
-    method: "DELETE",
+  fetch(`http://localhost:8000/api/notes/${noteId}`, {
+    method: 'DELETE',
     headers: {
-      "content-type": "application/json",
-    },
+      'content-type': 'application/json'
+    }
   })
     .then((res) => {
       if (!res.ok) {
@@ -29,7 +29,7 @@ function deleteNoteRequest(noteId, callback) {
 
 class Folder extends Component {
   static propTypes = {
-    match: PropTypes.object,
+    match: PropTypes.object
   };
 
   static contextType = ApiContext;
@@ -44,7 +44,7 @@ class Folder extends Component {
       return (
         <ApiContext.Consumer key={i}>
           {(context) => (
-            <div className="note-card">
+            <div className='note-card'>
               <NavLink to={`/note/${note.id}`}>
                 <h2>{note.name}</h2>
               </NavLink>
@@ -67,7 +67,7 @@ class Folder extends Component {
     return (
       <>
         {this.displayFolderNotes()}
-        <NavLink to="/addNote">
+        <NavLink to='/addNote'>
           <button>Add Note</button>
         </NavLink>
       </>

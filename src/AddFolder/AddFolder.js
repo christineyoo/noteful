@@ -32,7 +32,7 @@ class AddFolder extends Component {
     const { name } = this.state;
     const folderName = name.value;
 
-    fetch("http://localhost:9090/folders", {
+    fetch("http://localhost:8000/api/folders", {
       method: "POST",
       headers: {
         "content-type": "application/json",

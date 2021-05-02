@@ -21,7 +21,7 @@ class App extends Component {
   // Must "npm start" noteful-json-server to get posts
   componentDidMount() {
     // Fetches folder data
-    fetch("http://localhost:9090/folders", {
+    fetch("http://localhost:8000/api/folders", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -37,7 +37,7 @@ class App extends Component {
       .catch((error) => this.setState({ error }));
 
     // Fetches note data
-    fetch("http://localhost:9090/notes", {
+    fetch("http://localhost:8000/api/notes", {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -54,10 +54,10 @@ class App extends Component {
   }
 
   // Responsible for adding a folder to the state
-  addFolder = (data, folderName) => {
+  addFolder = (data, folder_name) => {
     const newFolderObject = {
       id: data.id,
-      name: folderName,
+      folder_name: folder_name,
     };
     this.setState({ folders: [...this.state.folders, newFolderObject] });
   };
