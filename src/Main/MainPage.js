@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
-import ApiContext from "../ApiContext";
-import "./MainPage.css";
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import ApiContext from '../ApiContext';
+import './MainPage.css';
 
 // Makes DELETE request to backend service
 function deleteNoteRequest(noteId, callback) {
   fetch(`http://localhost:8000/api/notes/${noteId}`, {
-    method: "DELETE",
+    method: 'DELETE',
     headers: {
-      "content-type": "application/json",
-    },
+      'content-type': 'application/json'
+    }
   })
     .then((res) => {
       if (!res.ok) {
@@ -37,7 +37,7 @@ class MainPage extends Component {
       return (
         <ApiContext.Consumer key={i}>
           {(context) => (
-            <div className="note-card">
+            <div className='note-card'>
               <NavLink to={`/note/${note.id}`}>
                 <h2>{note.note_name}</h2>
               </NavLink>
@@ -59,7 +59,7 @@ class MainPage extends Component {
     return (
       <>
         {this.displayNotes()}
-        <NavLink to="/addNote">
+        <NavLink to='/addNote'>
           <button>Add Note</button>
         </NavLink>
       </>

@@ -72,6 +72,7 @@ class AddNote extends Component {
   };
 
   displayFolderOptions = () => {
+    console.log('displayFolderOptions');
     const copyFolders = this.context.folders || [];
     const folderOptions = copyFolders.map((folder, i) => {
       return (
@@ -84,6 +85,7 @@ class AddNote extends Component {
   };
 
   handleSubmit = (event, callback) => {
+    console.log('handleSubmit');
     event.preventDefault();
     const { name, content, folder } = this.state;
     const noteName = name.value;

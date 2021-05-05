@@ -38,7 +38,7 @@ class AddFolder extends Component {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        name: folderName
+        folder_name: folderName
       })
     })
       .then((res) => {
@@ -50,6 +50,7 @@ class AddFolder extends Component {
       .then((data) => {
         this.props.history.push("/");
         callback(data, folderName);
+        this.context.fetchNotes();
       })
       .catch((error) => this.setState({ error }));
   };
