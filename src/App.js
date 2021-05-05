@@ -119,7 +119,7 @@ class App extends Component {
       <div className='App'>
         <header>
           <h1>
-            <Link to='/'>Noteful</Link>
+            <Link to='/'>noteful</Link>
           </h1>
         </header>
         <ApiContext.Provider value={contextValue}>
