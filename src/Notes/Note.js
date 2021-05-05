@@ -37,8 +37,9 @@ class Note extends Component {
   displayNote = () => {
     const copyNotes = this.context.notes || [];
     const filteredNote = copyNotes.filter(
-      (note) => note.id === this.props.match.params.noteId
+      (note) => +note.id === +this.props.match.params.noteId
     );
+    console.log('filtered note', filteredNote)
     const formattedFilteredNote = filteredNote.map((note, i) => {
       return (
         <ApiContext.Consumer key={i}>
