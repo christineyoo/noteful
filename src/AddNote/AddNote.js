@@ -84,7 +84,6 @@ class AddNote extends Component {
   };
 
   handleSubmit = (event, callback) => {
-    console.log('clicked');
     event.preventDefault();
     const { name, content, folder } = this.state;
     const noteName = name.value;

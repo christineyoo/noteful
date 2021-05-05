@@ -37,7 +37,6 @@ class Folder extends Component {
   displayFolderNotes = () => {
     const copyNotes = this.context.notes || [];
     const filteredNotes = copyNotes.filter((note) => {
-      console.log('note, this.match stuff', note, this.props.match.params);
       return +note.folder_id === +this.props.match.params.folderId;
     });
     const formattedFilteredNotes = filteredNotes.map((note, i) => {
@@ -46,9 +45,9 @@ class Folder extends Component {
           {(context) => (
             <div className='note-card'>
               <NavLink to={`/note/${note.id}`}>
-                <h2>{note.name}</h2>
+                <h2>{note.note_name}</h2>
               </NavLink>
-              <p>Folder ID: {note.folderId}</p>
+              <p>Folder ID: {note.folder_id}</p>
               <p>Date modified on {note.modified}</p>
               <button
                 onClick={() =>
