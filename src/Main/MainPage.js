@@ -30,7 +30,7 @@ function deleteNoteRequest(noteId, callback) {
 class MainPage extends Component {
   static contextType = ApiContext;
 
-  // Responsible for displaying all the notes on the "/" route
+  // Displays all the notes on the "/" route
   displayNotes = () => {
     const copyNotes = this.context.notes || [];
     const formattedNotes = copyNotes.map((note, i) => {

@@ -84,6 +84,7 @@ class AddNote extends Component {
   };
 
   handleSubmit = (event, callback) => {
+    console.log('clicked');
     event.preventDefault();
     const { name, content, folder } = this.state;
     const noteName = name.value;
@@ -98,7 +99,7 @@ class AddNote extends Component {
         note_name: noteName,
         content: noteContent,
         folder_id: folderId,
-        // modified: ???
+        modified: '2021-05-01 23:21:26.392487+00'
       })
     })
       .then((res) => {
@@ -110,6 +111,7 @@ class AddNote extends Component {
       .then((data) => {
         this.props.history.push('/');
         callback(data, noteName, noteContent);
+        this.context.fetchNotes();
       })
       .catch((error) => this.setState({ error }));
   };

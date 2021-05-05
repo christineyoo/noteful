@@ -18,7 +18,6 @@ class App extends Component {
     error: null
   };
 
-  // Must "npm start" noteful-json-server to get posts
   componentDidMount() {
     // Fetches folder data
     fetch('http://localhost:8000/api/folders', {
@@ -57,7 +56,7 @@ class App extends Component {
       .catch((error) => this.setState({ error }));
   };
 
-  // Responsible for adding a folder to the state
+  // Adds a folder to the state
   addFolder = (data, folder_name) => {
     const newFolderObject = {
       id: data.id,
@@ -66,7 +65,7 @@ class App extends Component {
     this.setState({ folders: [...this.state.folders, newFolderObject] });
   };
 
-  // Responsible for adding a note to the state
+  // Adds a note to the state
   addNote = (data, noteName, noteContent) => {
     const newNoteObject = {
       id: data.id,
@@ -76,7 +75,7 @@ class App extends Component {
     this.setState({ notes: [...this.state.notes, newNoteObject] });
   };
 
-  // Responsible for deleting a note from the state
+  // Deletes a note from the state
   deleteNote = (noteId) => {
     const newNotes = this.state.notes.filter((note) => note.id !== noteId);
     this.setState({ notes: newNotes });
