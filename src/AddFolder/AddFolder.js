@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import ApiContext from "../ApiContext";
-import PropTypes from "prop-types";
-import ValidationError from "../ValidationError/ValidationError";
-import "./AddFolder.css";
+import React, { Component } from 'react';
+import ApiContext from '../ApiContext';
+import PropTypes from 'prop-types';
+import ValidationError from '../ValidationError/ValidationError';
+import './AddFolder.css';
 
 // This component creates a form that adds a new folder.
 // There should be a POST request to the /folders endpoint on the server
@@ -13,17 +13,17 @@ class AddFolder extends Component {
 
   state = {
     name: {
-      value: "",
-      touched: false,
-    },
+      value: '',
+      touched: false
+    }
   };
 
   inputName = (folderName) => {
     this.setState({
       name: {
         value: folderName,
-        touched: true,
-      },
+        touched: true
+      }
     });
   };
 
@@ -32,10 +32,10 @@ class AddFolder extends Component {
     const { name } = this.state;
     const folderName = name.value;
 
-    fetch("http://localhost:8000/api/folders", {
-      method: "POST",
+    fetch('http://localhost:8000/api/folders', {
+      method: 'POST',
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json'
       },
       body: JSON.stringify({
         folder_name: folderName
@@ -48,7 +48,7 @@ class AddFolder extends Component {
         return res.json();
       })
       .then((data) => {
-        this.props.history.push("/");
+        this.props.history.push('/');
         callback(data, folderName);
         this.context.fetchNotes();
       })
@@ -58,7 +58,7 @@ class AddFolder extends Component {
   validateName = () => {
     const name = this.state.name.value.trim();
     if (name.length === 0) {
-      return "A name for the folder is required";
+      return 'A name for the folder is required';
     }
   };
 
@@ -67,15 +67,15 @@ class AddFolder extends Component {
       <ApiContext.Consumer>
         {(context) => (
           <form
-            className="folder"
+            className='folder'
             onSubmit={(e) => this.handleSubmit(e, context.addFolder)}
           >
             <h2>Create a Folder</h2>
-            <label htmlFor="name">Folder Name </label>
+            <label htmlFor='name'>Folder Name </label>
             <input
-              type="text"
-              name="name"
-              id="name"
+              type='text'
+              name='name'
+              id='name'
               onChange={(e) => this.inputName(e.target.value)}
             />
             <br />
@@ -83,10 +83,10 @@ class AddFolder extends Component {
               <ValidationError message={this.validateName()} />
             )}
             <br />
-            <button type="reset" onClick={() => this.props.history.goBack()}>
+            <button type='reset' onClick={() => this.props.history.goBack()}>
               Cancel
             </button>
-            <button type="submit" disabled={this.validateName()}>
+            <button type='submit' disabled={this.validateName()}>
               Save
             </button>
           </form>

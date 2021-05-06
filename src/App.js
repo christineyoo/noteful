@@ -52,7 +52,10 @@ class App extends Component {
         }
         return res.json();
       })
-      .then((noteData) => this.setState({ notes: noteData }))
+      .then((noteData) => {
+        console.log('fetched!');
+        return this.setState({ notes: noteData });
+      })
       .catch((error) => this.setState({ error }));
   };
 

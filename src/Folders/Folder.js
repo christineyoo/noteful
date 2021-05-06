@@ -23,7 +23,7 @@ class Folder extends Component {
             throw error;
           });
         }
-        return res.json();
+        return res.text();
       })
       .then((data) => {
         callback(noteId);

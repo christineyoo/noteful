@@ -5,7 +5,6 @@ import './MainPage.css';
 
 // Makes DELETE request to backend service
 function deleteNoteRequest(noteId, callback) {
-  console.log('error here')
   fetch(`http://localhost:8000/api/notes/${noteId}`, {
     method: 'DELETE',
     headers: {
@@ -18,11 +17,10 @@ function deleteNoteRequest(noteId, callback) {
           throw error;
         });
       }
-      return res.json();
+      return res.text();
     })
     .then((data) => {
       callback(noteId);
-      this.context.fetchNotes();
     })
     .catch((error) => {
       console.error(error);
