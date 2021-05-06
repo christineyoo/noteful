@@ -41,7 +41,7 @@ class MainPage extends Component {
               <NavLink to={`/note/${note.id}`}>
                 <h2>{note.note_name}</h2>
               </NavLink>
-              <p>Date modified on {note.modified}</p>
+              <p>Date modified on {note.modified.substring(0, 10)}</p>
               <button
                 onClick={() => deleteNoteRequest(note.id, context.deleteNote)}
               >
