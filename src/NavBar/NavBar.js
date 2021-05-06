@@ -14,7 +14,7 @@ class NavBar extends Component {
         <div className="folder-card" key={i}>
           <NavLink
             to={`/folder/${folder.id}`}
-            activeStyle={{ fontStyle: "bold", color: "#669bbc", fontWeight: "900" }}
+            activeStyle={{ fontStyle: "bold", color: "#33333", fontWeight: "900" }}
           >
             {folder.folder_name}
           </NavLink>

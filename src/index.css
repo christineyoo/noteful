@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 body {
-  margin: 1.25rem 5rem;
+  margin: 1.25rem 10rem;
   font-family: "Open Sans", sans-serif;
   background: #d3cce3; /* fallback for old browsers */
   background: -webkit-linear-gradient(
