@@ -22,7 +22,7 @@ class AddNote extends Component {
       touched: false
     },
     folder: {
-      value: '',
+      value: 1,
       touched: false
     }
   };
@@ -72,11 +72,10 @@ class AddNote extends Component {
   };
 
   displayFolderOptions = () => {
-    console.log('displayFolderOptions');
     const copyFolders = this.context.folders || [];
-    const folderOptions = copyFolders.map((folder, i) => {
+    const folderOptions = copyFolders.map((folder) => {
       return (
-        <option key={i} value={folder.id}>
+        <option key={folder.id} value={folder.id}>
           {folder.folder_name}
         </option>
       );
@@ -85,7 +84,6 @@ class AddNote extends Component {
   };
 
   handleSubmit = (event, callback) => {
-    console.log('handleSubmit');
     event.preventDefault();
     const { name, content, folder } = this.state;
     const noteName = name.value;
@@ -99,7 +97,7 @@ class AddNote extends Component {
       body: JSON.stringify({
         note_name: noteName,
         content: noteContent,
-        folder_id: folderId,
+        folder_id: +folderId,
         modified: '2021-05-01 23:21:26.392487+00'
       })
     })

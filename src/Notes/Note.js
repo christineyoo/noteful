@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import ApiContext from "../ApiContext";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import ApiContext from '../ApiContext';
+import PropTypes from 'prop-types';
 
 class Note extends Component {
   static propTypes = {
@@ -11,10 +11,10 @@ class Note extends Component {
   // Sends a DELETE request for a note when on the "/note" route
   deleteNoteRequest(noteId, callback) {
     fetch(`http://localhost:8000/api/notes/${noteId}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "content-type": "application/json",
-      },
+        'content-type': 'application/json'
+      }
     })
       .then((res) => {
         if (!res.ok) {
@@ -25,7 +25,7 @@ class Note extends Component {
         return res.json();
       })
       .then((data) => {
-        this.props.history.push("/");
+        this.props.history.push('/');
         callback(noteId);
       })
       .catch((error) => {
@@ -39,12 +39,11 @@ class Note extends Component {
     const filteredNote = copyNotes.filter(
       (note) => +note.id === +this.props.match.params.noteId
     );
-    console.log('filtered note', filteredNote)
     const formattedFilteredNote = filteredNote.map((note, i) => {
       return (
         <ApiContext.Consumer key={i}>
           {(context) => (
-            <div className="note-card">
+            <div className='note-card'>
               <h2>{note.name}</h2>
               <p>Date modified on {note.modified}</p>
               <p>{note.content}</p>

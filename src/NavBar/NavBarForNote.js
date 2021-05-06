@@ -6,21 +6,17 @@ class NavBarForNote extends Component {
 
   // This function displays the "Go Back" button and the folder name as the NavBar when in the "/note" route
   displayNotesNavBar = () => {
-    console.log('context', this.context.notes);
-
     const copyNotes = this.context.notes || [];
     const copyFolders = this.context.folders || [];
     const currentNote = copyNotes.filter(
       (note) => note.id === +this.props.match.params.noteId
     )[0];
-    console.log('current note', currentNote);
-    console.log('this params thing', typeof +this.props.match.params.noteId);
     const filteredFolder = copyFolders.filter((folder) => {
       if (currentNote && currentNote.folder_id) {
         return +folder.id === +currentNote.folder_id;
       }
+      return null;
     });
-    console.log('filtered folder', filteredFolder);
 
     return (
       <div>
