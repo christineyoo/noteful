@@ -20,7 +20,7 @@ class App extends Component {
 
   componentDidMount() {
     // Fetches folder data
-    fetch('http://localhost:8000/api/folders', {
+    fetch('https://christine-noteful.herokuapp.com/api/folders', {
       method: 'GET',
       headers: {
         'content-type': 'application/json'
@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   fetchNotes = () => {
-    fetch('http://localhost:8000/api/notes', {
+    fetch('https://christine-noteful.herokuapp.com/api/notes', {
       method: 'GET',
       headers: {
         'content-type': 'application/json'

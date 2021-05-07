@@ -11,7 +11,7 @@ class Folder extends Component {
   static contextType = ApiContext;
   // Sends DELETE request for a selected note when on the "/folder" route
   deleteNoteRequest = (noteId, callback) => {
-    fetch(`http://localhost:8000/api/notes/${noteId}`, {
+    fetch(`https://christine-noteful.herokuapp.com/api/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'

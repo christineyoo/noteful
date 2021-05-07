@@ -5,7 +5,7 @@ import './MainPage.css';
 
 // Makes DELETE request to backend service
 function deleteNoteRequest(noteId, callback) {
-  fetch(`http://localhost:8000/api/notes/${noteId}`, {
+  fetch(`https://christine-noteful.herokuapp.com/api/notes/${noteId}`, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json'

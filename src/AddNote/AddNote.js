@@ -89,7 +89,7 @@ class AddNote extends Component {
     const noteName = name.value;
     const noteContent = content.value;
     const folderId = folder.value;
-    fetch('http://localhost:8000/api/notes', {
+    fetch('https://christine-noteful.herokuapp.com/api/notes', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
